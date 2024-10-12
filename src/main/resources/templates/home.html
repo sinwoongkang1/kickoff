@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            height: 100vh;
+        }
+        .content {
+            flex-grow: 1;
+            background-color: #ffffff;
+        }
+        .view{
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div style="display: flex; flex-grow: 1;">
+    <div th:replace="components/menubar.html"></div>
+    <div class="content">
+        <div th:replace="components/navbar.html"></div>
+        <div class="view">
+            <h1>환영합니다!</h1>
+            <p>메뉴를 선택하면 여기에 콘텐츠가 표시됩니다.</p>
+        </div>
+    </div>
+</div>
+<script>
+    function updateDateTime() {
+        const now = new Date();
+        const formattedDate = `${now.getFullYear()} / ${String(now.getMonth() + 1).padStart(2, '0')} / ${String(now.getDate()).padStart(2, '0')}`;
+        const hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const period = hours >= 12 ? '오후' : '오전';
+        const formattedTime = `${period} ${hours % 12 || 12}시 ${minutes}분`;
+
+        document.getElementById('date').textContent = formattedDate;
+        document.getElementById('time').textContent = formattedTime;
+    }
+
+    // 초기 시간 표시
+    updateDateTime();
+    // 1초마다 날짜 및 시간 업데이트
+    setInterval(updateDateTime, 1000);
+</script>
+</body>
+</html>

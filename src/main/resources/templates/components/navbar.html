@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+    .navbar {
+        display: flex;
+        background-color: #007BFF;
+        color: white;
+        padding: 10px;
+        justify-content: space-between;
+        height: 25px;
+        align-items: center;
+    }
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        margin-right: 20px;
+    }
+    .navbar a:hover {
+        text-decoration: underline;
+    }
+    input.search-input-box {
+        margin: 10px;
+        width: 300px;
+        height: 25px;
+        background: none;
+        border: solid;
+        border-color: white;
+    }
+    .search-input-box::placeholder {
+        color: #f4f4f4;
+        font-style: italic;
+    }
+    .search-input-box:focus {
+        border-color: #007BFF;
+        outline: none;
+    }
+    .navbar-right {
+        display: flex;
+    }
+    .navbar-left {
+        display: flex;
+    }
+    a {
+        margin: 10px 10px 10px 20px;
+    }
+    p#date {
+        padding: 0px;
+        margin: 0;
+    }
+    p#time {
+        margin: 0px;
+    }
+    div#current-time {
+        font-size: 12px;
+        text-align: center;
+        padding: 5px;
+    }
+</style>
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-left">
+        <p>통합검색</p>
+        <input class="search-input-box" type="text" placeholder=" 여기에 검색어를 입력하세요"/>
+    </div>
+    <div class="navbar-right">
+        <div id="current-time">
+            <p id="date"></p>
+            <p id="time"></p>
+        </div>
+        <a href="#">로그인</a>
+    </div>
+</div>
+
+</body>
+</html>
