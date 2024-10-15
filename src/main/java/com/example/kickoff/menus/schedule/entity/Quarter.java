@@ -10,7 +10,6 @@ import lombok.*;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class Quarter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
