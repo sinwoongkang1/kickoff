@@ -47,6 +47,7 @@
             height: 500px;
         }
         .schedule-content {
+            margin-top: -10px;
             display: flex;
             text-align: center;
             justify-content: center;
@@ -65,6 +66,11 @@
         span#matchName {
             margin-bottom: 10px;
         }
+        img.ebl-logo {
+            width: 140px;
+            height: auto;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -75,7 +81,8 @@
         <div class="view">
             <div class="top">
                 <div class="schedule">
-                    <p>다가오는 일정</p>
+                    <p id="upcomingSchedule">다가오는 일정</p>
+                    <img class="ebl-logo" src="/logo/kob.png">
                     <div class="schedule-content">
                     <p class="update-schedule" th:each="schedule : ${schedules}">
                     <span id="round" th:text="${schedule.round}+'R'"></span>
