@@ -20,6 +20,7 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private Integer round;
     private String matchName;
     private String matchPlace;
     private LocalDate playingDate;

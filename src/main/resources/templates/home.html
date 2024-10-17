@@ -12,10 +12,58 @@
         }
         .content {
             flex-grow: 1;
-            background-color: #ffffff;
+            background-image: url("/background/back1.png");
+            background-size: cover;
+            background-position: center;
         }
-        .view{
+        .view {
+            display: flex;
             padding: 20px;
+            color: white;
+            text-align: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .top {
+            display: flex;
+        }
+        .bottom {
+            display: flex;
+        }
+        .schedule{
+            width: 600px;
+            height: 500px;
+        }
+        .record{
+            width: 600px;
+            height: 500px;
+        }
+        .notification{
+            width: 600px;
+            height: 500px;
+        }
+        .board{
+            width: 600px;
+            height: 500px;
+        }
+        .schedule-content {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+        }
+        p.update-schedule {
+            display: flex;
+            flex-direction: column;
+            margin-right: 45px;
+            margin-left: 45px;
+        }
+        span#round {
+            font-size: 45px;
+            font-weight: bold;
+            margin: 20px 0px 10px 0px;
+        }
+        span#matchName {
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -25,8 +73,28 @@
     <div class="content">
         <div th:replace="components/navbar.html"></div>
         <div class="view">
-            <h1>환영합니다!</h1>
-            <p>메뉴를 선택하면 여기에 콘텐츠가 표시됩니다.</p>
+            <div class="top">
+                <div class="schedule">
+                    <p>다가오는 일정</p>
+                    <div class="schedule-content">
+                    <p class="update-schedule" th:each="schedule : ${schedules}">
+                    <span id="round" th:text="${schedule.round}+'R'"></span>
+                    <span id="matchName" th:text="'vs '+${schedule.matchName}">vs </span>
+                    <span id="matchPlace" th:text="${schedule.matchPlace}"></span>
+                    </div>
+                </div>
+                <div class="record">
+                    <p>선수별 기록</p>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="notification">
+                    <p>공지사항</p>
+                </div>
+                <div class="board">
+                    <p>자유게시판</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

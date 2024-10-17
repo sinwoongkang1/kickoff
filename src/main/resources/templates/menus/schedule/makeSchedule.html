@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+        }
+        p {
+            text-align: center;
+        }
+        .view {
+            display: flex;
+            text-align: center;
+            padding: 45px;
+            flex-direction: column;
+            align-items: center;
+        }
+        .content {
+            flex-grow: 1;
+            background-color: #ffffff;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .page{
+            width: 500px;
+        }
+        input#opponent {
+            width: 480px;
+        }
+        input#location {
+            width: 480px;
+        }
+        input#time {
+            width: 480px;
+        }
+        input#date {
+            width: 480px;
+        }
+        input#round {
+            width: 480px;
+        }
+
+    </style>
+</head>
+<body>
+<div style="display: flex; flex-grow: 1;">
+    <div th:replace="components/menubar.html"></div>
+    <div class="content">
+        <div th:replace="components/navbar.html"></div>
+        <div class="view">
+            <h2>일정 추가 페이지</h2>
+                <div class="page">
+                    <form th:action="@{/addSchedule}" method="post">
+                        <div class="form-group">
+                            <label for="round">라운드</label>
+                            <input type="text" id="round" name="round" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">일시</label>
+                            <input type="date" id="date" name="playingDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">시간</label>
+                            <input type="time" id="time" name="startTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">장소</label>
+                            <input type="text" id="location" name="matchPlace" required placeholder="장소를 입력하세요">
+                        </div>
+                        <div class="form-group">
+                            <label for="opponent">상대팀</label>
+                            <input type="text" id="opponent" name="matchName" required placeholder="상대팀을 입력하세요">
+                        </div>
+                        <div class="button-container">
+                            <button type="button" onclick="history.back()">이전으로</button>
+                            <button type="submit">등록하기</button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

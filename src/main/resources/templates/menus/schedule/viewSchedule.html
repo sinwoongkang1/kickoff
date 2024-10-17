@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+        }
+        p {
+            text-align: center;
+            color: white;
+        }
+        .view{
+            text-align: center;
+            padding : 45px;
+        }
+        .content {
+            flex-grow: 1;
+            background-image: url("/background/back1.png");
+            background-size: cover;
+            background-position: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            color: white;
+        }
+        th, td {
+            border: 1px solid;
+            padding: 10px;
+        }
+        th {
+            text-align: center;
+        }
+        .add-button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .add-button:hover {
+            background-color: #45a049;
+        }
+        .pageSortOptions {
+            text-align: right;
+            margin: 20px 0px 10px 0px;
+            color: white;
+            font-weight: bold;
+        }
+        span.sort-link {
+            cursor: pointer;
+        }
+        a {
+            margin: 10px 10px 10px 10px;
+            color: white;
+        }
+        .viewMonthly {
+            margin-top: 20px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        span.month {
+            margin-right: 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div style="display: flex; flex-grow: 1;">
+    <div th:replace="components/menubar.html"></div>
+    <div class="content">
+        <div th:replace="components/navbar.html"></div>
+        <div class="view">
+            <h1>KICKOFF CALENDAR</h1>
+            <p>2024 SEASON SCHEDULE</p>
+            <button class="add-button" onclick="location.href='/makeSchedule'">일정 추가</button>
+            <div class="viewMonthly">
+                <span class="month" onclick="filterSchedules('all')">All</span>
+                <span class="month" onclick="filterSchedules('01')">Jan</span>
+                <span class="month" onclick="filterSchedules('02')">Feb</span>
+                <span class="month" onclick="filterSchedules('03')">Mar</span>
+                <span class="month" onclick="filterSchedules('04')">Apr</span>
+                <span class="month" onclick="filterSchedules('05')">May</span>
+                <span class="month" onclick="filterSchedules('06')">Jun</span>
+                <span class="month" onclick="filterSchedules('07')">Jul</span>
+                <span class="month" onclick="filterSchedules('08')">Aug</span>
+                <span class="month" onclick="filterSchedules('09')">Sep</span>
+                <span class="month" onclick="filterSchedules('10')">Oct</span>
+                <span class="month" onclick="filterSchedules('11')">Nov</span>
+                <span class="month" onclick="filterSchedules('12')">Dec</span>
+            </div>
+            <div class="pageSortOptions">
+                <span class="sort-link" onclick="sortTable('recent')">최근 경기순</span> |
+                <span class="sort-link" onclick="sortTable('date')">일정 시작순</span>
+            </div>
+            <table id="scheduleTable">
+                <thead>
+                <tr>
+                    <th>날짜</th>
+                    <th>장소</th>
+                    <th>상대팀</th>
+                    <th>결과</th>
+                    <th>기타</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="schedule : ${schedules}">
+                    <td th:text="${schedule.playingDate}">날짜</td>
+                    <td th:text="${schedule.matchPlace}">장소</td>
+                    <td th:text="${schedule.matchName}">상대팀</td>
+                    <td th:text="${schedule.resultWin}">결과</td>
+                    <td><a th:href="@{/schedule/{id}(id=${schedule.id})}">자세히 보기</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    function sortTable(order) {
+        const table = document.getElementById("scheduleTable");
+        const tbody = table.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+
+        rows.sort((a, b) => {
+            const dateA = new Date(a.dataset.date);
+            const dateB = new Date(b.dataset.date);
+            return order === 'recent' ? dateB - dateA : dateA - dateB;
+        });
+
+        rows.forEach(row => tbody.appendChild(row));
+    }
+    function filterSchedules(month){
+        const table = document.getElementById("scheduleTable");
+        const tbody = table.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+
+        rows.forEach(row => {
+            const date = new Date(row.dataset.date);
+            const rowMonth = String(date.getMonth() + 1).padStart(2, '0');
+            if (month === 'all' || rowMonth === month) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+    }
+</script>
+</body>
+</html>

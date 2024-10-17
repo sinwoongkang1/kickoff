@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>일정 수정</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+        }
+        p {
+            text-align: center;
+        }
+        .view {
+            text-align: center;
+            padding: 45px;
+        }
+        .content {
+            flex-grow: 1;
+            background-color: #ffffff;
+        }
+        .input-field {
+            margin: 10px 0;
+            width: 300px;
+            padding: 10px;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div style="display: flex; flex-grow: 1;">
+    <div th:replace="components/menubar.html"></div>
+    <div class="content">
+        <div th:replace="components/navbar.html"></div>
+        <div class="view">
+            <h1>일정 수정</h1>
+            <form action="#" th:action="@{/scheduleEdit/{id}(id=${schedule.id})}" method="post">
+                <p>라운드: <input type="number" class="input-field" th:value="${schedule.round}" name="round" /></p>
+                <p>날짜: <input type="text" class="input-field" th:value="${schedule.playingDate}" name="playingDate" /></p>
+                <p>장소: <input type="text" class="input-field" th:value="${schedule.matchPlace}" name="matchPlace" /></p>
+                <p>상대팀: <input type="text" class="input-field" th:value="${schedule.matchName}" name="matchName" /></p>
+                <p>결과: <input type="text" class="input-field" th:value="${schedule.resultWin}" name="resultWin" /></p>
+                <a th:href="@{/schedule/{id}(id=${schedule.id})}">돌아가기</a>
+                <button type="submit" class="button">완료</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
