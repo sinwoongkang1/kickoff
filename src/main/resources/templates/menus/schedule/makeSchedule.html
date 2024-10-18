@@ -12,36 +12,58 @@
         }
         h1 {
             text-align: center;
+            color: white;
         }
         p {
             text-align: center;
+            color: white;
         }
         .view {
+            color: white;
             display: flex;
-            text-align: center;
             padding: 45px;
+            text-align: center;
             flex-direction: column;
             align-items: center;
         }
         .content {
             flex-grow: 1;
-            background-color: #ffffff;
+            background-image: url("/background/back1.png");
+            background-size: cover;
+            background-position: center;
+        }
+        .page{
+            width: 500px;
         }
         .form-group {
-            margin-bottom: 15px;
             text-align: left;
+            margin-bottom: 40px;
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
+        input#opponent {
+            margin-top: 10px;
+            width: 480px;
+            height: 30px;}
+        input#location {
+            margin-top: 10px;
+            width: 480px;
+            height: 30px;}
+        input#time {
+            margin-top: 10px;
+            width: 480px;
+            height: 30px;}
+        input#date {
+            margin-top: 10px;
+            width: 480px;
+            height: 30px;}
+        input#round {
+            margin-top: 10px;
+            width: 480px;
+            height: 30px;
         }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+        label{
+            font-size: 20px;
         }
-        button {
+        .add-button {
             margin-top: 20px;
             padding: 10px 15px;
             background-color: #4CAF50;
@@ -49,33 +71,9 @@
             border: none;
             cursor: pointer;
         }
-        button:hover {
+        .add-button:hover {
             background-color: #45a049;
         }
-        .button-container {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .page{
-            width: 500px;
-        }
-        input#opponent {
-            width: 480px;
-        }
-        input#location {
-            width: 480px;
-        }
-        input#time {
-            width: 480px;
-        }
-        input#date {
-            width: 480px;
-        }
-        input#round {
-            width: 480px;
-        }
-
     </style>
 </head>
 <body>
@@ -85,34 +83,34 @@
         <div th:replace="components/navbar.html"></div>
         <div class="view">
             <h2>일정 추가 페이지</h2>
-                <div class="page">
-                    <form th:action="@{/addSchedule}" method="post">
-                        <div class="form-group">
-                            <label for="round">라운드</label>
-                            <input type="text" id="round" name="round" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="date">일시</label>
-                            <input type="date" id="date" name="playingDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="time">시간</label>
-                            <input type="time" id="time" name="startTime" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="location">장소</label>
-                            <input type="text" id="location" name="matchPlace" required placeholder="장소를 입력하세요">
-                        </div>
-                        <div class="form-group">
-                            <label for="opponent">상대팀</label>
-                            <input type="text" id="opponent" name="matchName" required placeholder="상대팀을 입력하세요">
-                        </div>
-                        <div class="button-container">
-                            <button type="button" onclick="history.back()">이전으로</button>
-                            <button type="submit">등록하기</button>
-                        </div>
-                    </form>
-                </div>
+            <div class="page">
+                <form th:action="@{/addSchedule}" method="post">
+                    <div class="form-group">
+                        <label for="round">라운드</label>
+                        <input type="text" id="round" name="round" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">일시</label>
+                        <input type="date" id="date" name="playingDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">시간</label>
+                        <input type="time" id="time" name="startTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">장소</label>
+                        <input type="text" id="location" name="matchPlace" required placeholder="장소를 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="opponent">상대팀</label>
+                        <input type="text" id="opponent" name="matchName" required placeholder="상대팀을 입력하세요">
+                    </div>
+                    <div class="button-container">
+                        <button class="add-button" type="button" onclick="history.back()">이전으로</button>
+                        <button class="add-button" type="submit">등록하기</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

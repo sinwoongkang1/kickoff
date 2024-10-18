@@ -87,7 +87,7 @@
                     <p class="update-schedule" th:each="schedule : ${schedules}">
                     <span id="round" th:text="${schedule.round}+'R'"></span>
                     <span id="matchName" th:text="'vs '+${schedule.matchName}">vs </span>
-                    <span id="matchPlace" th:text="${schedule.matchPlace}"></span>
+                    <span id="matchPlace" th:text="'< '+${schedule.matchPlace}+' >'"></span>
                     </div>
                 </div>
                 <div class="record">

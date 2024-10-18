@@ -22,7 +22,9 @@
         }
         .content {
             flex-grow: 1;
-            background-color: #ffffff;
+            background-image: url("/background/back1.png");
+            background-size: cover;
+            background-position: center;
         }
 
     </style>
@@ -33,14 +35,19 @@
     <div class="content">
         <div th:replace="components/navbar.html"></div>
         <div class="view">
-            <h1>일정 세부사항</h1>
-            <p>라운드: <span th:text="${schedule.round}"></span></p>
-            <p>날짜: <span th:text="${schedule.playingDate}"></span></p>
-            <p>장소: <span th:text="${schedule.matchPlace}"></span></p>
-            <p>상대팀: <span th:text="${schedule.matchName}"></span></p>
-            <p>결과: <span th:text="${schedule.resultWin}"></span></p>
-            <a href="/menus/schedule">목록으로 돌아가기</a>
-            <a th:href="@{/scheduleEdit/{id}(id=${schedule.id})}">수정하기</a>
+            <div class="match-detail">
+                <h1>일정 세부사항</h1>
+                <p>라운드: <span th:text="${schedule.round}"></span></p>
+                <p>날짜: <span th:text="${schedule.playingDate}"></span></p>
+                <p>장소: <span th:text="${schedule.matchPlace}"></span></p>
+                <p>상대팀: <span th:text="${schedule.matchName}"></span></p>
+                <p>결과: <span th:text="${schedule.resultWin}"></span></p>
+                <a href="/menus/schedule">목록으로 돌아가기</a>
+                <a th:href="@{/scheduleEdit/{id}(id=${schedule.id})}">수정하기</a>
+            </div>
+            <div class="match-record">
+
+            </div>
         </div>
     </div>
 </div>
